@@ -30,6 +30,16 @@ The `build.rs` specifically looks into some of the folders under `$AESDK_ROOT/Ex
 The file `ae_wrapper.hpp` contains the headers you need to build your AfterEffects plugin.
 Modify as needed. If the header is some (new) SDK folder that `build.rs` does not yet list, add it.
 
+### macOS
+
+The `build.rs` contains Clang arguments to find neccessary system headers. This configured for _macOS 10.15_ (Catalina).
+
+You may need to edit this if you are targeting older system headers. 
+
+### Windows
+
+TBD.
+
 ## Build
 
 ```bash
