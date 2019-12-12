@@ -5,10 +5,11 @@ Rust crate that generates raw AfterEffects API bindings via bindgen.
 This is WIP – only tested on _macOS_. Will likely require additional work to build on _Windows_.
 
 ## Prequisites:
-Download the Adobe AfterEffects SDK.
+Download the [Adobe AfterEffects SDK](https://console.adobe.io/downloads/ae).
 > Note that the SDK published by Adobe is outdated if you are using the 3D Artisan API to
 > write your own 3D renderer plug-in.
 > Contact the AfterEffects SDK team and ask nicely and they may send you an updated SDK.
+>
 > Ignore this if you just want to develop regular 2D plugins.
 
 Define an `AESDK_ROOT` environment variable that contains the path to your AfterEffects SDK.
@@ -20,7 +21,6 @@ AfterEffectsSDK
     ├── AEGP
     ├── Effect
     ├── ...
-    ├──
 ```
 
 ## Configure
