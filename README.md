@@ -1,6 +1,6 @@
 # aftereffects-sys
 
-Rust crate that generates raw AfterEffects API bindings via bindgen.
+Rust crate that generates raw AfterEffects API bindings via [bindgen](https://github.com/rust-lang/rust-bindgen).
 
 This is WIP – only tested on _macOS_. Will likely require additional work to build on _Windows_.
 
