@@ -1,8 +1,8 @@
 # aftereffects-sys
 
-Rust crate that generates raw AfterEffects API bindings via bindgen
+Rust crate that generates raw AfterEffects API bindings via bindgen.
 
-This is WIP.
+This is WIP – only tested on _macOS_. Will likely require additional work to build on _Windows_.
 
 ## Prequisites:
 Download the Adobe AfterEffects SDK.
@@ -28,17 +28,13 @@ AfterEffectsSDK
 The `build.rs` specifically looks into some of the folders under `$AESDK_ROOT/Examples`.
 
 The file `ae_wrapper.hpp` contains the headers you need to build your AfterEffects plugin.
-Modify as needed. If the header is some folder that `build.rs` does not list, add it.
-For example you need `$AESDK_ROOT/Examples/UI/ColorGrid`:
+Modify as needed. If the header is some (new) SDK folder that `build.rs` does not yet list, add it.
 
-In `ae_wrapper.hpp`
+## Build
 
-
-
-
-
-
-
+```bash
+cargo build
+```
 
 ## Use
 
