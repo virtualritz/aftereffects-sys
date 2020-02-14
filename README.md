@@ -1,10 +1,11 @@
 # aftereffects-sys
 
-Rust crate that generates raw AfterEffects API bindings via [bindgen](https://github.com/rust-lang/rust-bindgen).
+Rust crate that generates raw AfterEffects API bindings via
+[bindgen](https://github.com/rust-lang/rust-bindgen).
 
 This is WIP – only tested on _macOS_. Will likely require additional work to build on _Windows_.
 
-## Prequisites:
+## Prequisites
 Download the [Adobe AfterEffects SDK](https://console.adobe.io/downloads/ae).
 > Note that the SDK published by Adobe is outdated if you are using the 3D Artisan API to
 > write your own 3D renderer plug-in.
@@ -28,11 +29,13 @@ AfterEffectsSDK
 The `build.rs` specifically looks into some of the folders under `$AESDK_ROOT/Examples`.
 
 The file `ae_wrapper.hpp` contains the headers you need to build your AfterEffects plugin.
-Modify as needed. If the header is some (new) SDK folder that `build.rs` does not yet list, add it.
+Modify as needed. If the header is some (new) SDK folder that `build.rs` does not yet list,
+add it.
 
 ### macOS
 
-The `build.rs` contains Clang arguments to find neccessary system headers. This configured for _macOS 10.15_ (Catalina).
+The `build.rs` contains Clang arguments to find neccessary system headers. This is configured
+for _macOS 10.15_ (Catalina).
 
 You may need to edit this if you are targeting older system headers. 
 
