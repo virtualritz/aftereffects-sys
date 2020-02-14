@@ -6,11 +6,9 @@ use std::path::{Path,PathBuf};
 //use std::process::Command;
 
 fn main() {
-    // TODO: make this generic & work on Linux/Windows
+    // TODO: make this generic & work on bot macOS & Windows
 
     let ae_sdk_path = &env::var("AESDK_ROOT").expect("AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.");
-
-
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
@@ -23,10 +21,11 @@ fn main() {
         .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Util").display()))
 
         //#[cfg(target_os = "macos")]
-        .clang_arg("-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers/")
-        .clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Headers/")
-        .clang_arg("-F/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/")
-        
+        .clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers/")
+        //.clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Headers/")
+        .clang_arg("-I/Library/Developer/CommandLineTools/usr/include/c++/v1/")
+        .clang_arg("-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/")
+
 
         .generate()
         .expect("Unable to generate AfterEffects bindings");

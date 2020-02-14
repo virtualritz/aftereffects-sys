@@ -6,4 +6,4 @@ authors = ["Moritz Moeller <virtualritz@protonmail.com>"]
 [dependencies]
 
 [build-dependencies]
-bindgen = "0.52.0"
+bindgen = "*"
