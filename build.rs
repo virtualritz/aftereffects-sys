@@ -1,14 +1,18 @@
 // build.rs
 extern crate bindgen;
 
-use std::env;
-use std::path::{Path,PathBuf};
+use std::{
+    env,
+    path::{Path, PathBuf},
+};
 //use std::process::Command;
 
 fn main() {
     // TODO: make this generic & work on bot macOS & Windows
 
-    let ae_sdk_path = &env::var("AESDK_ROOT").expect("AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.");
+    let ae_sdk_path = &env::var("AESDK_ROOT")
+        .expect("AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.
+        Please set AESDK_ROOT to the root folder of you AfterEffects SDK installation (this folder contains /Examples & the SDK Guide PDF).");
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
