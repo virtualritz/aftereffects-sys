@@ -54,6 +54,6 @@ cargo build
 Suggested use until published: use a local copy in a subdirectory of your project. Aka:
 ```toml
 [dependencies]
-aftereffects-sys = { path = "aftereffects-sys" }
+aftereffects-sys = { path = "/path/to/aftereffects-sys" }
 ```
 
