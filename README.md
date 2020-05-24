@@ -11,7 +11,7 @@ Download the [Adobe AfterEffects SDK](https://console.adobe.io/downloads/ae).
 > write your own 3D renderer plug-in.
 > Contact the AfterEffects SDK team and ask nicely and they may send you an updated SDK.
 >
-> Ignore this if you just want to develop regular 2D plugins.
+> Ignore this if you just want to develop 2D plugins (which stkill have access to 3D data).
 
 Define an `AESDK_ROOT` environment variable that contains the path to your AfterEffects SDK.
 Typically the directory structure will look like this:
@@ -54,6 +54,6 @@ cargo build
 Suggested use until published: use a local copy in a subdirectory of your project. Aka:
 ```toml
 [dependencies]
-aftereffects-sys = { path = "aftereffects-sys" }
+aftereffects-sys = { path = "/path/to/aftereffects-sys" }
 ```
 
