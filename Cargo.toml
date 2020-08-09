@@ -1,9 +1,8 @@
 [package]
 name = "aftereffects-sys"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Moritz Moeller <virtualritz@protonmail.com>"]
-
-[dependencies]
+license = "MIT"
 
 [build-dependencies]
-bindgen = "0.54.0"
+bindgen = "0.54.1"

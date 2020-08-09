@@ -20,6 +20,29 @@ fn main() {
     let ae_bindings = bindgen::Builder::default()
         .header("ae_wrapper.hpp")
 
+
+        .whitelist_function("A_.*")
+        .whitelist_type("A_.*")
+        .whitelist_var("A_.*")
+
+        .whitelist_function("AEGP.*")
+        .whitelist_type("AEGP.*")
+        .whitelist_var("AEGP.*")
+        .whitelist_var("kAEGP.*")
+
+        .whitelist_function("PF_.*")
+        .whitelist_type("PF_.*")
+        .whitelist_var("PF_.*")
+        .whitelist_var("kPF.*")
+
+        .whitelist_function("PR_.*")
+        .whitelist_type("PR_.*")
+        .whitelist_var("PR_.*")
+
+        .whitelist_var("kSP.*")
+
+
+
         .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Headers").display()))
         .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Headers").join("SP").display()))
         .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Util").display()))
@@ -30,7 +53,7 @@ fn main() {
         .clang_arg("-I/Library/Developer/CommandLineTools/usr/include/c++/v1/")
         .clang_arg("-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/")
 
-
+        .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .generate()
         .expect("Unable to generate AfterEffects bindings");
 
