@@ -30,6 +30,9 @@ fn main() {
         .whitelist_var("AEGP.*")
         .whitelist_var("kAEGP.*")
 
+        .whitelist_var("AEIO_.*")
+        .whitelist_var("FIEL_.*")
+
         .whitelist_function("PF_.*")
         .whitelist_type("PF_.*")
         .whitelist_var("PF_.*")
@@ -40,8 +43,6 @@ fn main() {
         .whitelist_var("PR_.*")
 
         .whitelist_var("kSP.*")
-
-
 
         .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Headers").display()))
         .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Headers").join("SP").display()))

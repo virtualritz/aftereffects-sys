@@ -3,6 +3,7 @@ name = "aftereffects-sys"
 version = "0.1.2"
 authors = ["Moritz Moeller <virtualritz@protonmail.com>"]
 license = "MIT"
+description = "Auto-generated AfterEffects API bindings"
 
 [build-dependencies]
 bindgen = "0.54.1"
