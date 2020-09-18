@@ -10,7 +10,7 @@ use std::{
 fn main() {
     // TODO: make this generic & work on bot macOS & Windows
 
-    println!("cargo:rerun-if-changed=src/ae_wrapper.hpp");
+    println!("cargo:rerun-if-changed=ae_wrapper.hpp");
 
     let ae_sdk_path = &env::var("AESDK_ROOT")
         .expect("AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.
