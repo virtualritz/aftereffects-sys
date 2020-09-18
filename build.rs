@@ -10,6 +10,8 @@ use std::{
 fn main() {
     // TODO: make this generic & work on bot macOS & Windows
 
+    println!("cargo:rerun-if-changed=src/ae_wrapper.hpp");
+
     let ae_sdk_path = &env::var("AESDK_ROOT")
         .expect("AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.
         Please set AESDK_ROOT to the root folder of you AfterEffects SDK installation (this folder contains /Examples & the SDK Guide PDF).");
@@ -19,7 +21,6 @@ fn main() {
 
     let ae_bindings = bindgen::Builder::default()
         .header("ae_wrapper.hpp")
-
 
         .whitelist_function("A_.*")
         .whitelist_type("A_.*")
@@ -31,6 +32,12 @@ fn main() {
         .whitelist_var("kAEGP.*")
 
         .whitelist_var("AEIO_.*")
+
+        .whitelist_function("DRAWBOT_.*")
+        .whitelist_type("DRAWBOT_.*")
+        .whitelist_var("DRAWBOT_.*")
+        .whitelist_var("kDRAWBOT_.*")
+
         .whitelist_var("FIEL_.*")
 
         .whitelist_function("PF_.*")

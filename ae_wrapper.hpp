@@ -66,3 +66,6 @@
 //#include "DuckSuite.h"
 //#include "Param_Utils.h"
 #include "entry.h"
+
+// adobesdk subfolder
+#include "adobesdk/DrawbotSuite.h"
