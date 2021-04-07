@@ -6,4 +6,4 @@ license = "MIT"
 description = "Auto-generated AfterEffects API bindings"
 
 [build-dependencies]
-bindgen = "0.55.1"
+bindgen = "0.58.1"
