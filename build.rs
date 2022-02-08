@@ -10,63 +10,91 @@ use std::{
 fn main() {
     // TODO: make this generic & work on bot macOS & Windows
 
-    println!("cargo:rerun-if-changed=ae_wrapper.hpp");
+    println!("cargo:rerun-if-changed=wrapper.hpp");
 
-    let ae_sdk_path = &env::var("AESDK_ROOT")
-        .expect("AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.
-        Please set AESDK_ROOT to the root folder of you AfterEffects SDK installation (this folder contains /Examples & the SDK Guide PDF).");
+    let ae_sdk_path = &env::var("AESDK_ROOT").expect(
+        "AESDK_ROOT environment variable not set – cannot find AfterEffcts SDK.\n\
+        Please set AESDK_ROOT to the root folder of your AfterEffects SDK\n\
+        installation (this folder contains the Examples folder & the SDK\n\
+        Guide PDF).",
+    );
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
 
     let ae_bindings = bindgen::Builder::default()
-        .header("ae_wrapper.hpp")
+        .header("wrapper.hpp")
+        //.derive_debug(true)
+        .allowlist_function("A_.*")
+        .allowlist_type("A_.*")
+        .allowlist_var("A_.*")
+        .allowlist_function("AEGP.*")
+        .allowlist_type("AEGP.*")
+        .allowlist_var("AEGP.*")
+        .allowlist_var("kAEGP.*")
+        .allowlist_var("AEIO_.*")
+        .allowlist_function("DRAWBOT_.*")
+        .allowlist_type("DRAWBOT_.*")
+        .allowlist_var("DRAWBOT_.*")
+        .allowlist_var("kDRAWBOT_.*")
+        .allowlist_var("FIEL_.*")
+        .allowlist_function("PF_.*")
+        .allowlist_type("PF_.*")
+        .allowlist_var("PF_.*")
+        .allowlist_var("kPF.*")
+        .allowlist_function("PR_.*")
+        .allowlist_type("PR_.*")
+        .allowlist_var("PR_.*")
+        .allowlist_var("kSP.*")
+        //.clang_arg("-include stdint.h")
+        .clang_arg(format!(
+            "-I{}",
+            Path::new(ae_sdk_path)
+                .join("Examples")
+                .join("Headers")
+                .display()
+        ))
+        .clang_arg(format!(
+            "-I{}",
+            Path::new(ae_sdk_path)
+                .join("Examples")
+                .join("Headers")
+                .join("SP")
+                .display()
+        ))
+        .clang_arg(format!(
+            "-I{}",
+            Path::new(ae_sdk_path)
+                .join("Examples")
+                .join("Util")
+                .display()
+        ));
 
-        .whitelist_function("A_.*")
-        .whitelist_type("A_.*")
-        .whitelist_var("A_.*")
+    let ae_bindings = if cfg!(feature = "artisan-2-api") {
+        ae_bindings.clang_arg("--define-macro=ARTISAN_2_API")
+    } else {
+        ae_bindings
+    };
 
-        .whitelist_function("AEGP.*")
-        .whitelist_type("AEGP.*")
-        .whitelist_var("AEGP.*")
-        .whitelist_var("kAEGP.*")
+    let ae_bindings = if cfg!(target_os = "macos") {
+        ae_bindings
+            //.clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers/")
+            //.clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Headers/")
+            //.clang_arg("-I/Library/Developer/CommandLineTools/usr/include/c++/v1/")
+            .clang_arg(
+                "-I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include/stdint.h",
+            )
+            .clang_arg(
+                "-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/",
+            )
+    } else {
+        // TODO: Windows SDK paths
+        ae_bindings
+    };
 
-        .whitelist_var("AEIO_.*")
-
-        .whitelist_function("DRAWBOT_.*")
-        .whitelist_type("DRAWBOT_.*")
-        .whitelist_var("DRAWBOT_.*")
-        .whitelist_var("kDRAWBOT_.*")
-
-        .whitelist_var("FIEL_.*")
-
-        .whitelist_function("PF_.*")
-        .whitelist_type("PF_.*")
-        .whitelist_var("PF_.*")
-        .whitelist_var("kPF.*")
-
-        .whitelist_function("PR_.*")
-        .whitelist_type("PR_.*")
-        .whitelist_var("PR_.*")
-
-        .whitelist_var("kSP.*")
-
-        .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Headers").display()))
-        .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Headers").join("SP").display()))
-        .clang_arg(format!("-I{}", Path::new( ae_sdk_path ).join("Examples").join("Util").display()))
-
-        //#[cfg(target_os = "macos")]
-        .clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers/")
-        //.clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Headers/")
-        .clang_arg("-I/Library/Developer/CommandLineTools/usr/include/c++/v1/")
-        .clang_arg("-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/")
-
-        .parse_callbacks(Box::new(bindgen::CargoCallbacks))
-        .generate()
-        .expect("Unable to generate AfterEffects bindings");
-
-    // Write the bindings to the $OUT_DIR/bindings.rs file.
     ae_bindings
-        .write_to_file(out_path.join("ae_bindings.rs"))
+        .generate()
+        .expect("Unable to generate AfterEffects bindings")
+        .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write AfterEffects bindings!");
 }

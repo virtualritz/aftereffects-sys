@@ -1,6 +1,9 @@
-// Headers subfolder
-#include "A.h"
+// Required for int*_t/uint*_t.
+#include <stdint.h>
+
+// Headers subfolder.
 #include "AEConfig.h"
+#include "A.h"
 
 // Next header makes bindgen generate code that rustc can't handle
 // (yet). See https://github.com/rust-lang/rust/issues/59154
@@ -25,12 +28,10 @@
 #include "AE_IO_FileExt.h"
 #include "AE_Macros.h"
 #include "AE_PluginData.h"
-#include "AE_Scene3D_Private.h"
 #include "FIEL_Public.h"
 #include "Mach-O_prefix.h"
 #include "PF_Masks.h"
 //#include "PIFormatT.h"
-#include "PR_Feature.h"
 #include "PR_Public.h"
 #include "PT_Public.h"
 #include "PrSDKAESupport.h"
@@ -67,5 +68,12 @@
 //#include "Param_Utils.h"
 #include "entry.h"
 
-// adobesdk subfolder
+// adobesdk subfolder.
 #include "adobesdk/DrawbotSuite.h"
+
+// Artisan 2.0 headers.
+// Not included with the SDK. Ask Asobe nicely to obtain a copy.
+#ifdef ARTISAN_2_API
+    #include "AE_Scene3D_Private.h"
+    #include "PR_Feature.h"
+#endif
