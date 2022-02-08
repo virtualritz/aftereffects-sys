@@ -34,7 +34,7 @@ Crate `version 0.1.5` was tested with the *Ae SDK* from **October 2021**.
 The `build.rs` specifically looks into some of the folders under
 `$AESDK_ROOT/Examples`.
 
-The file `wrapper.hpp` contains the headers you need to build your Ae
+The `wrapper.hpp` file contains the headers you need to build your Ae
 plugin. Modify as needed. If the header is some (new) SDK folder that
 `build.rs` does not yet list, add it.
 
@@ -50,7 +50,7 @@ plugin. Modify as needed. If the header is some (new) SDK folder that
 
 ### macOS
 
-The `build.rs` contains `Clang `arguments to find neccessary system headers.
+The `build.rs` contains `Clang` arguments to find neccessary system headers.
 This is configured for _macOS 10.15_ (Catalina).
 
 You may need to edit this if you are targeting older system headers.
@@ -67,18 +67,5 @@ Until this is published it is suggested to use a link to this repository:
 [dependencies]
 aftereffects-sys = { git = "https://github.com/virtualritz/aftereffects-sys" }
 ```
-
-## License
-
-The underlying implementation is:
-
-This crate is licensed under either of
-
-* [Apache, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
-* [BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-* [MIT](http://opensource.org/licenses/MIT)
-* [Zlib](https://opensource.org/licenses/Zlib)
-
-at your option.
 
 License: Apache-2.0 OR BSD-3-Clause OR MIT OR Zlib
