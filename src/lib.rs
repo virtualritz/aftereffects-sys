@@ -4,7 +4,7 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]
 #![allow(unused_attributes)]
-//! Raw AfterEffects API bindings via [bindgen](https://github.com/rust-lang/rust-bindgen).
+//! Raw AfterEffects (Ae) API bindings via [bindgen](https://github.com/rust-lang/rust-bindgen).
 //!
 //! This is WIP – only tested on `macOS`. Will likely require additional work to
 //! build on `Windows`.
@@ -20,7 +20,7 @@
 //! access to 3D data).
 //!
 //! Define the `AESDK_ROOT` environment variable that contains the path to your
-//! AfterEffects SDK. Typically the directory structure will look like this:
+//! Ae SDK. Typically the directory structure will look like this:
 //!
 //! ```text
 //! AfterEffectsSDK
@@ -31,17 +31,16 @@
 //!     ├── ...
 //! ```
 //!
-//! Crate `version 0.1.5` was tested with the *AfterEffects SDK* from **October
-//! 2021**.
+//! Crate `version 0.1.5` was tested with the *Ae SDK* from **October 2021**.
 //!
 //! # Configuration
 //!
 //! The `build.rs` specifically looks into some of the folders under
 //! `$AESDK_ROOT/Examples`.
 //!
-//! The file `ae_wrapper.hpp` contains the headers you need to build your
-//! AfterEffects plugin. Modify as needed. If the header is some (new) SDK
-//! folder that `build.rs` does not yet list, add it.
+//! The file `wrapper.hpp` contains the headers you need to build your Ae
+//! plugin. Modify as needed. If the header is some (new) SDK folder that
+//! `build.rs` does not yet list, add it.
 //!
 //! ## Features
 //!
@@ -50,8 +49,8 @@
 //!   * `AE_Scene3D_Private.h`
 //!   * `PR_Feature.h`
 //!
-//!   Contact the AfterEffects SDK team and ask nicely and they may send you
-//!   theses headers.
+//!   Contact the Ae SDK team and ask nicely and they may send you theses
+//!   headers.
 //!
 //! ## macOS
 //!
