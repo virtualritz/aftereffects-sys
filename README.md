@@ -5,6 +5,12 @@ Raw AfterEffects (Ae) API bindings via [bindgen](https://github.com/rust-lang/ru
 This is WIP – only tested on `macOS`. Will likely require additional work to
 build on `Windows`.
 
+> :warning: There are safe, high-level bindings in the
+[`aftereffects`](https://github.com/virtualritz/aftereffects) crate. I am
+talking to Adobe atm as they wrap some API parts which are not public. I
+hope to make the resp. repository public asap. Ping me if you want early
+access.
+
 ## Prequisites
 
 Download the [*Adobe AfterEffects SDK*](https://console.adobe.io/downloads/ae).
