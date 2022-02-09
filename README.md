@@ -6,16 +6,17 @@ This is WIP – only tested on `macOS`. Will likely require additional work to
 build on `Windows`.
 
 > :warning: There are safe, high-level bindings in the
-[`aftereffects`](https://github.com/virtualritz/aftereffects) crate. I am
-talking to Adobe atm as they wrap some API parts which are not public. I
-hope to make the resp. repository public asap. Ping me if you want early
-access.
+> [`aftereffects`](https://github.com/virtualritz/aftereffects) crate. I am
+> talking to Adobe at the moment as the crate wraps some Ae SDK API parts
+> which are not public. I hope to make the resp. repository public asap.
+>
+> Ping me if you want early access.
 
 ## Prequisites
 
 Download the [*Adobe AfterEffects SDK*](https://console.adobe.io/downloads/ae).
-> Note that the SDK published by Adobe is outdated if you are using the 3D
-> Artisan API to write your own 3D renderer plug-in.
+> :warning: Note that the SDK published by Adobe is outdated if you are using
+> the 3D Artisan API to write your own 3D renderer plug-in.
 > Also see [Features](#features) below for more information.
 >
 > Ignore this if you just want to develop 2D plugins (which still have
